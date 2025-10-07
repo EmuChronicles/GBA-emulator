@@ -1,0 +1,48 @@
+# Rust / Cargo
+target/
+**/*.rs.bk
+Cargo.lock
+
+# Artefatos temporários
+*.log
+*.tmp
+*.temp
+
+# VS Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+!.vscode/tasks.json
+!.vscode/launch.json
+
+# Sistemas operacionais
+Thumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+.DS_Store
+
+# SDL2 (caso DLLs locais)
+*.dll
+
+# Build artifacts
+*.exe
+*.pdb
+*.obj
+*.o
+
+# ROMs e saves (não versionar)
+roms/
+*.gba
+*.bin
+*.sav
+*.srm
+
+# Imagens de disco (não usadas no GBA, evitar por segurança)
+*.iso
+*.cso
+*.img
+*.cue
+
+# IDEs
+.idea/
+*.iml
