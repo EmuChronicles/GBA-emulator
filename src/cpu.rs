@@ -1,3 +1,5 @@
+use crate::memory::Memory; // importa a struct Memory do modulo memory
+
 enum InstructionClass {
     Branch,             // B
     SingleDataTransfer, // LDR
@@ -78,8 +80,8 @@ impl Arm7Tdmi {
     fn thumb_mode(&self) -> bool {
         (self.cpsr & (1 << 5)) != 0 // shift left (<<) serve para deslocar o bit x vezes para a esquerda. para decidir thumb ou arm,
                                     // precisamos verificar o bit T que é o bit 5, a expressao basicamente diz:
-                                    // se o bit 5 do cpsr for diferente de 0 entao retorna true (1)
-                                    // thumb = 1 || arm = 0
+                                    // se bit 5 != 0 -> thumb (true)
+                                    // se bit 5 == 0 -> ARM (false)
     }
 
     pub fn reset(&mut self) {
@@ -89,11 +91,22 @@ impl Arm7Tdmi {
         self.r[15] = 0; // PC inicial placeholder, é importante sempre iniciar o PC (16o registrador) como 0
     }
 
+    pub fn fetch(&self, mem: &Memory) -> u32 {
+        let pc = self.r[15];
+
+        if self.thumb_mode() {
+            // thumb
+            let effective_adress = pc.wrapping_add(4) & !1;
+            mem.read_u16(effective_adress) as u32 // NECESSARIO IMPL READS
+        } else {
+            // ARM
+            let effective_adress = pc.wrapping_add(8) & !3;
+            mem.read_u32(effective_adress)
+        }
+    }
+
     pub fn step(&mut self) {
         // step é a funçao que de fato executa o TODO
         // TODO: fetch-decode-execute
-        let pc = self.r[15];
-        let opcode: u32 = mem.read32(pc);
-        self.r[15] = pc.wrapping_add(4);
     }
 }
