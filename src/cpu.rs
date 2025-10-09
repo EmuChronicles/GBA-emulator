@@ -81,7 +81,7 @@ impl Arm7Tdmi {
         (self.cpsr & (1 << 5)) != 0 // shift left (<<) serve para deslocar o bit x vezes para a esquerda. para decidir thumb ou arm,
                                     // precisamos verificar o bit T que é o bit 5, a expressao basicamente diz:
                                     // se bit 5 != 0 -> thumb (true)
-                                    // se bit 5 == 0 -> ARM (false)
+                                    // se bit 5 == 0 -> ARM (fals)
     }
 
     pub fn reset(&mut self) {
@@ -97,7 +97,7 @@ impl Arm7Tdmi {
         if self.thumb_mode() {
             // thumb
             let effective_adress = pc.wrapping_add(4) & !1;
-            mem.read_u16(effective_adress) as u32 // NECESSARIO IMPL READS
+            mem.read_u16(effective_adress) as u32
         } else {
             // ARM
             let effective_adress = pc.wrapping_add(8) & !3;
