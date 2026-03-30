@@ -14,6 +14,6 @@ Pausado
 ![Rust](https://img.shields.io/badge/rust-%23000000.svg?style=for-the-badge&logo=rust&logoColor=white)
 
 ## Observações
-- O projeto foi pausado temporariamente devido a demandas mais urgentes, a fim de evitar projetos inacabados.
+- Desenvolvimento suspenso temporariamente por demandas prioritárias.
 - O projeto encontrava-se em etapa inicial/embrionária no momento do pause.
 - Contato: emuchronicles0@gmail.com
